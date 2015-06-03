@@ -1,0 +1,43 @@
+body {
+	background: #ffffff;
+    
+	padding-top: 50px;
+}
+
+html, body {
+	height: 100%;
+}
+
+.navbar {
+	background-color: #dbecee;
+}
+
+.content {
+	margin-top: 20pt;
+}
+
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -30px;
+}
+
+#push, #footer {
+	height: 30px;
+}
+
+#footer {
+	background-color: #276b7c;
+	color: #ffffff;
+	padding: 5px 0px;
+}
+
+@media ( max-width : 767px) {
+	#footer {
+		margin-left: -20px;
+		margin-right: -20px;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
