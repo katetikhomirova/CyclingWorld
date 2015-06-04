@@ -12,10 +12,8 @@ window.fbAsyncInit = function() {
 			FB.api('/me', {
 				fields : 'name'
 			}, function(response) {
-
 				document.cookie = "id=" + response.id;
 				document.cookie = "name=" + response.name;
-				alert(document.cookie);
 			});
 
 		} else {
@@ -35,7 +33,6 @@ function login() {
 				console.log(Url);
 				console.log(response);
 				xmlHttp = new XMLHttpRequest();
-
 				xmlHttp.open("GET", Url, true);
 				xmlHttp.send(null);
 			});
@@ -55,7 +52,12 @@ function login() {
 
 					xmlHttp.open("GET", Url, true);
 					xmlHttp.send(null);
-					window.location = window.location.pathname + "profile";
+
+					document.cookie = "id=" + response.id;
+					document.cookie = "name=" + response.name;
+					document.cookie = "picture=" + response.data.url;
+					//alert(response.data.url);
+					window.location = "/profile";
 				}
 			});
 			console.log("u r logged in");
@@ -68,11 +70,14 @@ function login() {
 
 function logout() {
 	FB.logout(function(response) {
-		var Url = "${pageContext.request.contextPath}/logout";
+		var Url = "/logout";
 		xmlHttp = new XMLHttpRequest();
 		xmlHttp.open("GET", Url, true);
 		xmlHttp.send(null);
-		window.location = "${pageContext.request.contextPath}/";
+		document.cookie = "id=";
+		document.cookie = "name=";
+		document.cookie = "picture=";
+		window.location = "/";
 	})
 }
 (function(d, s, id) {

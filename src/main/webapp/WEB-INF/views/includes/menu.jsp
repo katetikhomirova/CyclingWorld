@@ -5,11 +5,12 @@
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<%
-				for (Cookie c : request.getCookies())
-					if (c.getName().equals("id") && !c.getValue().equals("")) {
+				if (request.getCookies() != null)
+					for (Cookie c : request.getCookies())
+						if (c.getName().equals("id") && !c.getValue().equals("")) {
 			%>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Profile</a></li>
+				<li class="active"><a href="/profile">Profile</a></li>
 			</ul>
 			<p class="navbar-text navbar-right">
 				Welcome, ${cookie.name.value}! <a href="#" onclick="logout()">logout</a>

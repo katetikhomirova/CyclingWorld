@@ -13,17 +13,16 @@
 		<div class="container profile">
 			<div class="container profilePanel">
 				<div class="col-md-1">
-					<img alt="User Pic" src="" class="profileImg">
+					<img alt="User Pic" src="${cookie.picture.value}"
+						class="profileImg">
 				</div>
 				<div class="col-md-3">
-					<h3><%=session.getAttribute("userID")%></h3>
+					<h3>${cookie.name.value}</h3>
 				</div>
 			</div>
 		</div>
 		<div id="push"></div>
 	</div>
 	<%@ include file="includes/footer.html"%>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
 </body>
 </html>

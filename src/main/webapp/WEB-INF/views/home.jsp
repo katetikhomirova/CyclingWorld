@@ -18,7 +18,7 @@
 						<div class="col-md-4"></div>
 						<div class="col-md-4">
 							<div class="well">
-								<p>Welcome to Cycle World!</p>
+								<p>Welcome to Cycling World!</p>
 								<p id="greetings">There you can create your cycle routes and
 									go for a cycling with your friends. Enjoy!</p>
 								<a onclick="login()"><img
@@ -34,7 +34,6 @@
 		<div id="push"></div>
 	</div>
 	<%@ include file="includes/footer.html"%>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
+	
 </body>
 </html>
