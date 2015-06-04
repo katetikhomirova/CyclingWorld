@@ -1,0 +1,18 @@
+#mapcontainer {
+	width: 100%;
+	min-height: 400px;
+	margin-top: 20px;
+}
+
+#nameLbl {
+	float: right;
+}
+
+#nameInput {
+	padding-top: 5px;
+	text-align: center;
+}
+
+#isPublic {
+	margin-top: 10px;
+}

@@ -15,6 +15,13 @@ html, body {
 	margin-top: 20pt;
 }
 
+.myRow {
+	color: #5a7391;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
 #wrap {
 	min-height: 100%;
 	height: auto !important;
@@ -39,11 +46,4 @@ html, body {
 		padding-left: 20px;
 		padding-right: 20px;
 	}
-}
-
-#mapcontainer {
-	width: 600px;
-	height: 500px;
-	margin-bottom: 20px;
-	margin-top: 20px;
 }
