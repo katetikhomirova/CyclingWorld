@@ -8,7 +8,7 @@ public interface DBManager {
 
 	public List<Route> getRoutes(String userId);
 
-	public boolean saveRoute(Route route, String userId);
+	public boolean saveRoute(Route route);
 
 	public boolean removeRoute(Route route);
 

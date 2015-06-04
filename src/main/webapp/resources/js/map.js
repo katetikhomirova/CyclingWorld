@@ -257,13 +257,27 @@ function distance() {
 	}
 }
 
+function get_cookie(cookie_name) {
+	var results = document.cookie.match('(^|;) ?' + cookie_name
+			+ '=([^;]*)(;|$)');
+
+	if (results)
+		return (unescape(results[2]));
+	else
+		return null;
+};
+
 function savePolyline() {
 	distance();
 	console.log(distance);
-	var url = "/savePolyLine?line=" + document.getElementById('name').value
-			+ "," + distance;
-	// var url = window.location.origin.toString() + "/savePolyLine?line="+
-	// document.getElementById('name').value + "," + distance;
+	var isPublic;
+	if (document.getElementById('isPublic').checked)
+		isPublic = "true";
+	else
+		isPublic = "false";
+	var url = "/savePolyLine?line=" + get_cookie("id") + ","
+			+ document.getElementById('name').value + "," + distance + ","
+			+ isPublic;
 	for (var i = 0; i < polyLine.getPath().getLength(); i++) {
 		url = url + "," + polyLine.getPath().getAt(i).toUrlValue();
 	}

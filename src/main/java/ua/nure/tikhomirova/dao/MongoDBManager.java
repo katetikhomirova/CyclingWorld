@@ -47,9 +47,8 @@ public class MongoDBManager implements DBManager {
 	}
 
 	@Override
-	public boolean saveRoute(Route route, String userId) {
+	public boolean saveRoute(Route route) {
 		DBCollection routes = db.getCollection("Routes");
-		route.setUserId(userId);
 		BasicDBObject newRoute = routeToDBObject(route);
 		BasicDBObject[] routesToInsert = new BasicDBObject[1];
 		routesToInsert[0] = newRoute;
@@ -64,9 +63,9 @@ public class MongoDBManager implements DBManager {
 
 	private Route dbObjectToRoute(DBObject doc) {
 		Route route = new Route();
-		// route.setId(Long.parseLong((String) doc.get("_id")));
 		route.setUserId((String) doc.get("userId"));
 		route.setDistance((String) doc.get("dist"));
+		route.setIsPublic((String) doc.get("isPub"));
 		route.setName((String) doc.get("name"));
 		route.setCoordsFromString((String) doc.get("coords"));
 		return route;
@@ -77,6 +76,7 @@ public class MongoDBManager implements DBManager {
 		res.put("userId", route.getUserId());
 		res.put("name", route.getName());
 		res.put("dist", route.getDistance());
+		res.put("isPub", route.getIsPublic());
 		res.put("coords", route.getCoordsString());
 		return res;
 	}

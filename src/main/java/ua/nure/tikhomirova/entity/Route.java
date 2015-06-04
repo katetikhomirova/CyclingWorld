@@ -10,6 +10,15 @@ public class Route {
 	private String name;
 	private String distance;
 	private String userId;
+	private String isPublic;
+
+	public String getIsPublic() {
+		return isPublic;
+	}
+
+	public void setIsPublic(String isPublic) {
+		this.isPublic = isPublic;
+	}
 
 	public String getUserId() {
 		return userId;

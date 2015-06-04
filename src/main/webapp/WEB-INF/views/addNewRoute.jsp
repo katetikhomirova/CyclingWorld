@@ -19,9 +19,17 @@
 					<div class="profile-content">
 						<div class="row">
 							<div class="row myRow">
-								<div class="col-md-12">
+								<div class="col-md-4">
 									<h3>Create new route</h3>
 								</div>
+								<div class="col-md-8">
+									<h6>
+										<span class="label label-default" data-toggle="tooltip"
+											data-placement="right"
+											title="To add route point click on map, to delete point click on it second time.">?</span>
+									</h6>
+								</div>
+
 							</div>
 							<div class="row myRow">
 								<div class="col-md-2">

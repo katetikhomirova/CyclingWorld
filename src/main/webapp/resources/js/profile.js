@@ -14,3 +14,7 @@ var im = document.getElementById("userImage")
 						+ "/picture?type=large");
 var name = document.getElementById("userName");
 name.innerHtml = get_cookie("name") + ' ' + get_cookie("surname");
+
+$(document).ready(function() {
+	$("label").tooltip();
+});
