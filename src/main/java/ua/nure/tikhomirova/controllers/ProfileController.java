@@ -1,5 +1,8 @@
 package ua.nure.tikhomirova.controllers;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,8 +16,14 @@ public class ProfileController {
 			.getLogger(HomeController.class);
 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String home() {
-		return "profile";
+	public String home(HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		for (Cookie c : cookies)
+			if (c.getName().equals("id"))
+				if (c.getValue().equals(""))
+					return "home";
+				else
+					return "profile";
+		return "home";
 	}
-
 }

@@ -9,9 +9,9 @@
 					for (Cookie c : request.getCookies())
 						if (c.getName().equals("id") && !c.getValue().equals("")) {
 			%>
-			<ul class="nav navbar-nav">
+			<!-- <ul class="nav navbar-nav">
 				<li class="active"><a href="/profile">Profile</a></li>
-			</ul>
+			</ul> -->
 			<p class="navbar-text navbar-right">
 				Welcome, ${cookie.name.value}! <a href="#" onclick="logout()">logout</a>
 			</p>

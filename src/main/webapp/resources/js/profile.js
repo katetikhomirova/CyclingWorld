@@ -7,5 +7,10 @@ function get_cookie(cookie_name) {
 	else
 		return null;
 };
-
-document.getElementById('userName').innerHTML = get_cookie("name");
+var im = document.getElementById("userImage")
+		.setAttribute(
+				"src",
+				"http://graph.facebook.com/" + get_cookie("id")
+						+ "/picture?type=large");
+var name = document.getElementById("userName");
+name.innerHtml = get_cookie("name") + ' ' + get_cookie("surname");

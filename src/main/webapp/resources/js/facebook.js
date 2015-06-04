@@ -13,7 +13,14 @@ window.fbAsyncInit = function() {
 				fields : 'name'
 			}, function(response) {
 				document.cookie = "id=" + response.id;
-				document.cookie = "name=" + response.name;
+				var arr = response.name.split("  ");
+				document.cookie = "name=" + arr[0];
+				if (arr[1] != null)
+					document.cookie = "surname=" + arr[1];
+				else
+					document.cookie = "surname=";
+				if (window.location.pathname == '/')
+					window.location = "/profile";
 			});
 
 		} else {
@@ -29,36 +36,14 @@ function login() {
 			FB.api('/me', {
 				fields : 'name'
 			}, function(response) {
-				var Url = window.location.pathname + "setId?id=" + response.id;
-				console.log(Url);
-				console.log(response);
-				xmlHttp = new XMLHttpRequest();
-				xmlHttp.open("GET", Url, true);
-				xmlHttp.send(null);
-			});
-
-			FB.api("/me/picture", {
-				"redirect" : false,
-				"height" : "200",
-				"type" : "normal",
-				"width" : "200"
-			}, function(response) {
-				if (response && !response.error) {
-					var Url = window.location.pathname + "setId?id="
-							+ response.id;
-					console.log(Url);
-					console.log(response);
-					xmlHttp = new XMLHttpRequest();
-
-					xmlHttp.open("GET", Url, true);
-					xmlHttp.send(null);
-
-					document.cookie = "id=" + response.id;
-					document.cookie = "name=" + response.name;
-					document.cookie = "picture=" + response.data.url;
-					//alert(response.data.url);
-					window.location = "/profile";
-				}
+				document.cookie = "id=" + response.id;
+				var arr = response.name.split("  ");
+				document.cookie = "name=" + arr[0];
+				if (arr[1] != null)
+					document.cookie = "surname=" + arr[1];
+				else
+					document.cookie = "surname=";
+				window.location = "/profile";
 			});
 			console.log("u r logged in");
 		} else {
@@ -76,7 +61,7 @@ function logout() {
 		xmlHttp.send(null);
 		document.cookie = "id=";
 		document.cookie = "name=";
-		document.cookie = "picture=";
+		document.cookie = "surname=";
 		window.location = "/";
 	})
 }

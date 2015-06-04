@@ -1,6 +1,5 @@
 package ua.nure.tikhomirova.controllers;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -20,11 +19,4 @@ public class HomeController {
 		session.setAttribute("userID", null);
 		return "home";
 	}
-
-	@RequestMapping(value = "/setId", method = RequestMethod.GET)
-	public String profile(HttpServletRequest request, HttpSession session) {
-		session.setAttribute("userID", request.getParameter("id"));
-		return null;
-	}
-
 }
