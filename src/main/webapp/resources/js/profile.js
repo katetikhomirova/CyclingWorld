@@ -5,13 +5,15 @@ window.onload = function() {
 			var htmlStr = "";
 			var routes = JSON.parse(xmlHttp.responseText);
 			for ( var i in routes) {
+				var coordsString = getCoordsString(routes[i].coords);
 				htmlStr += "<hr><div class=\"row myRow\"><div class=\"col-md-6\"><h5>";
 				htmlStr += routes[i].name;
 				htmlStr += "</h5></div>";
 				htmlStr += "<div class=\"col-md-2\"><h5>";
 				htmlStr += routes[i].distance;
 				htmlStr += "km</h5></div>";
-				htmlStr += "<div class=\"col-md-2\"><button class=\"btn btn-large btn-primary\" onclick=\"alert('Hello');\">Show</button>";
+				htmlStr += "<div class=\"col-md-2\"><button class=\"btn btn-large btn-primary\" onclick=\"initMap('";
+				htmlStr += coordsString + "');\">Show</button>";
 				htmlStr += "</div><div class=\"col-md-2\"><button class=\"btn btn-large btn-danger removeBtn\">";
 				htmlStr += "<i class=\"glyphicon glyphicon-remove\"></i></button></div></div>";
 
@@ -26,3 +28,11 @@ window.onload = function() {
 	xmlHttp.send(null);
 	alert(htmlStr);
 }
+
+function getCoordsString(arr) {
+	var str = "";
+	for ( var i in arr) {
+		str += arr[i].lat + "," + arr[i].lng + ";";
+	}
+	return str;
+};

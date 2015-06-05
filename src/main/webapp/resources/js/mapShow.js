@@ -5,6 +5,7 @@ var markers = [];
 var vmarkers = [];
 var g = google.maps;
 var distance;
+//var coords =[];
 
 function initMap(route) {
 	markers = [];

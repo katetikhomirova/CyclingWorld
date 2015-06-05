@@ -29,27 +29,6 @@
 						<div class="row myRow">
 							<div class="col-md-6">
 								<div id="routeList"></div>
-								<!-- 
-								<c:forEach items="${routes}" var="route">
-									<hr>
-									<div class="row myRow">
-										<div class="col-md-6">
-											<h5>${route.getName()}</h5>
-										</div>
-										<div class="col-md-2">
-											<h5>${route.distance}km</h5>
-										</div>
-										<div class="col-md-2">
-											<button class="btn btn-large btn-primary"
-												onclick="initMap('${route.getCoordsString()}');">Show</button>
-										</div>
-										<div class="col-md-2">
-											<button class="btn btn-large btn-danger removeBtn">
-												<i class="glyphicon glyphicon-remove"></i>
-											</button>
-										</div>
-									</div>
-								</c:forEach> -->
 							</div>
 							<div class="col-md-6">
 								<div id="mapcontainer"></div>
