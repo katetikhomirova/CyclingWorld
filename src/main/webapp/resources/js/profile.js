@@ -13,7 +13,7 @@ window.onload = function() {
 				htmlStr += routes[i].distance;
 				htmlStr += "km</h5></div>";
 				htmlStr += "<div class=\"col-md-2\"><button class=\"btn btn-large btn-primary\" onclick=\"initMap('";
-				htmlStr += coordsString + "');\">Show</button>";
+				htmlStr += routes[i].name + "');\">Show</button>";
 				htmlStr += "</div><div class=\"col-md-2\"><button class=\"btn btn-large btn-danger removeBtn\" onclick=\"removeRoute('";
 				htmlStr += routes[i].name + "');\">";
 				htmlStr += "<i class=\"glyphicon glyphicon-remove\"></i></button></div></div>";
@@ -45,11 +45,3 @@ function removeRoute(name) {
 		xhr.send(null);
 	}
 }
-
-function getCoordsString(arr) {
-	var str = "";
-	for ( var i in arr) {
-		str += arr[i].lat + "," + arr[i].lng + ";";
-	}
-	return str;
-};

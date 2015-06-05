@@ -19,6 +19,40 @@ import ua.nure.tikhomirova.entity.Route;
 @RequestMapping(value = "/rest")
 public class PolyLineService {
 
+	@ResponseBody
+	@RequestMapping(value = "/getPolyLines/{id}", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
+	public List<Route> getRoutes(@PathVariable String id) {
+		try {
+			return MongoDBManager.getInstance().getRoutes(id);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@RequestMapping(value = "/removeRoute/{id}/{routeName}", method = RequestMethod.GET)
+	public void removeRoute(@PathVariable String id,
+			@PathVariable String routeName) {
+		try {
+			MongoDBManager.getInstance().removeRoute(
+					MongoDBManager.getInstance().getRoute(id, routeName));
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/getRoute/{id}/{routeName}", method = RequestMethod.GET)
+	public Route getRoute(@PathVariable String id,
+			@PathVariable String routeName) {
+		try {
+			return MongoDBManager.getInstance().getRoute(id, routeName);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		return new Route();
+	}
+
 	@RequestMapping(value = "/savePolyLine", method = RequestMethod.GET)
 	public void savePolyLine(@RequestParam(value = "line") String line) {
 		if (line != null) {
@@ -36,29 +70,6 @@ public class PolyLineService {
 			} catch (UnknownHostException e) {
 				e.printStackTrace();
 			}
-		}
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/getPolyLines/{id}", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
-	public List<Route> getRoutes(@PathVariable String id) {
-		try {
-			return MongoDBManager.getInstance().getRoutes(id);
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@RequestMapping(value = "/removeRoute/{id}/{routeName}", method = RequestMethod.GET)
-	public void removeRoute(@PathVariable String id,
-			@PathVariable String routeName) {
-		try {
-			System.out.println("ID " + id + "ROUTENAME " + routeName);
-			MongoDBManager.getInstance().removeRoute(
-					MongoDBManager.getInstance().getRoute(id, routeName));
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
 		}
 	}
 

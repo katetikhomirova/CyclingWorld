@@ -41,12 +41,7 @@ public class MongoDBManager implements DBManager {
 		obj.add(new BasicDBObject("userId", userId));
 		obj.add(new BasicDBObject("name", routeName));
 		andQuery.put("$and", obj);
-		System.out.println("query" + andQuery.toString());
 		DBCursor docs = routes.find(andQuery);
-		/*
-		 * while (docs.hasNext()) { //System.out.println(docs.next()); DBObject
-		 * doc = docs.next(); res.add(dbObjectToRoute(doc)); break; }
-		 */
 		return dbObjectToRoute(docs.next());
 	}
 
