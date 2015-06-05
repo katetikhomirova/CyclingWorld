@@ -275,7 +275,7 @@ function savePolyline() {
 		isPublic = "true";
 	else
 		isPublic = "false";
-	var url = "/savePolyLine?line=" + get_cookie("id") + ","
+	var url = "/rest/savePolyLine?line=" + get_cookie("id") + ","
 			+ document.getElementById('name').value + "," + distance + ","
 			+ isPublic;
 	for (var i = 0; i < polyLine.getPath().getLength(); i++) {

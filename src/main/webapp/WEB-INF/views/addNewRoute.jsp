@@ -74,6 +74,6 @@
 		<div id="push"></div>
 	</div>
 	<%@ include file="includes/footer.html"%>
-	<script type="text/javascript" src="resources/js/profile.js"></script>
+	<script type="text/javascript" src="resources/js/leftProfileWindow.js"></script>
 </body>
 </html>
