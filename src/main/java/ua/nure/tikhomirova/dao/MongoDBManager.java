@@ -32,6 +32,25 @@ public class MongoDBManager implements DBManager {
 	}
 
 	@Override
+	public Route getRoute(String userId, String routeName) {
+		List<Route> res = new ArrayList<Route>();
+		DBCollection routes = db.getCollection("Routes");
+		// Generate search query
+		BasicDBObject andQuery = new BasicDBObject();
+		List<BasicDBObject> obj = new ArrayList<BasicDBObject>();
+		obj.add(new BasicDBObject("userId", userId));
+		obj.add(new BasicDBObject("name", routeName));
+		andQuery.put("$and", obj);
+		System.out.println("query" + andQuery.toString());
+		DBCursor docs = routes.find(andQuery);
+		/*
+		 * while (docs.hasNext()) { //System.out.println(docs.next()); DBObject
+		 * doc = docs.next(); res.add(dbObjectToRoute(doc)); break; }
+		 */
+		return dbObjectToRoute(docs.next());
+	}
+
+	@Override
 	public List<Route> getRoutes(String userId) {
 		List<Route> res = new ArrayList<Route>();
 		DBCollection routes = db.getCollection("Routes");
@@ -58,6 +77,8 @@ public class MongoDBManager implements DBManager {
 
 	@Override
 	public boolean removeRoute(Route route) {
+		DBCollection routes = db.getCollection("Routes");
+		routes.remove(routeToDBObject(route));
 		return false;
 	}
 
@@ -80,4 +101,5 @@ public class MongoDBManager implements DBManager {
 		res.put("coords", route.getCoordsString());
 		return res;
 	}
+
 }

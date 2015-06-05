@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,6 +48,18 @@ public class PolyLineService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@RequestMapping(value = "/removeRoute/{id}/{routeName}", method = RequestMethod.GET)
+	public void removeRoute(@PathVariable String id,
+			@PathVariable String routeName) {
+		try {
+			System.out.println("ID " + id + "ROUTENAME " + routeName);
+			MongoDBManager.getInstance().removeRoute(
+					MongoDBManager.getInstance().getRoute(id, routeName));
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

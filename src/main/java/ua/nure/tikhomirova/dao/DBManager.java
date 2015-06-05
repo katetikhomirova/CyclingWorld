@@ -6,6 +6,8 @@ import ua.nure.tikhomirova.entity.Route;
 
 public interface DBManager {
 
+	public Route getRoute(String userId, String routeName);
+
 	public List<Route> getRoutes(String userId);
 
 	public boolean saveRoute(Route route);
