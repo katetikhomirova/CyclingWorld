@@ -5,6 +5,19 @@ var markers = [];
 var vmarkers = [];
 var g = google.maps;
 var distance;
+var names;
+
+var xhr = new XMLHttpRequest();
+var str = '/rest/getRouteNames/' + get_cookie("id");
+xhr.open("GET", str, true);
+
+xhr.onreadystatechange = function() {
+	if (xhr.readyState == 4 && xhr.status == 200) {
+		names = JSON.parse(xhr.responseText);
+	}
+}
+xhr.setRequestHeader("Accept", "application/json");
+xhr.send(null);
 
 var calculateDistance = function() {
 
@@ -28,7 +41,8 @@ var calculateDistance = function() {
 
 		}
 		distance = Math.round(dist / 10) / 100;
-	}
+	} else
+		distance = 0;
 };
 
 var changeDistance = function() {
@@ -237,7 +251,7 @@ var moveVMarker = function(index) {
 };
 
 var removeVMarkers = function(index) {
-	if (markers.length > 0) {// при клике на маркере он удаляется
+	if (markers.length > 0) {
 		if (index != markers.length) {
 			vmarkers[index].setMap(null);
 			vmarkers.splice(index, 1);
@@ -276,20 +290,39 @@ function get_cookie(cookie_name) {
 
 function savePolyline() {
 	calculateDistance();
-	var isPublic;
-	if (document.getElementById('isPublic').checked)
-		isPublic = "true";
-	else
-		isPublic = "false";
-	var url = "/rest/savePolyLine?line=" + get_cookie("id") + ","
-			+ document.getElementById('name').value + "," + distance + ","
-			+ isPublic;
-	for (var i = 0; i < polyLine.getPath().getLength(); i++) {
-		url = url + "," + polyLine.getPath().getAt(i).toUrlValue();
-	}
-	xmlHttp = new XMLHttpRequest();
+	if (validate()) {
+		var isPublic;
+		if (document.getElementById('isPublic').checked)
+			isPublic = "true";
+		else
+			isPublic = "false";
+		var url = "/rest/savePolyLine?line=" + get_cookie("id") + ","
+				+ document.getElementById('name').value + "," + distance + ","
+				+ isPublic;
+		for (var i = 0; i < polyLine.getPath().getLength(); i++) {
+			url = url + "," + polyLine.getPath().getAt(i).toUrlValue();
+		}
+		xmlHttp = new XMLHttpRequest();
 
-	xmlHttp.open("GET", url, true);
-	xmlHttp.send(null);
-	window.location = "/profile";
+		xmlHttp.open("GET", url, true);
+		xmlHttp.send(null);
+		window.location = "/profile";
+	}
+}
+
+var validate = function() {
+	for ( var i in names)
+		if (document.getElementById('name').value == names[i]) {
+			alert("Route with this name is existed!");
+			return false;
+		}
+	if (document.getElementById('name').value == '') {
+		alert("Route name can't be empty!");
+		return false;
+	}
+	if (markers.length < 2) {
+		alert("Please add at least two points!");
+		return false;
+	}
+	return true;
 }

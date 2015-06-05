@@ -1,6 +1,7 @@
 package ua.nure.tikhomirova.rest;
 
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ua.nure.tikhomirova.dao.MongoDBManager;
+import ua.nure.tikhomirova.entity.Point;
 import ua.nure.tikhomirova.entity.Route;
 
 @RestController
@@ -73,4 +75,18 @@ public class PolyLineService {
 		}
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/getRouteNames/{id}", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
+	public List<String> getRouteNames(@PathVariable String id) {
+		List<String> names = new ArrayList<String>();
+		try {
+			List<Route> routes = MongoDBManager.getInstance().getRoutes(id);
+			for (Route r : routes) {
+				names.add(r.getName());
+			}
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		return names;
+	}
 }

@@ -36,7 +36,7 @@ function removeRoute(name) {
 		xhr.open("GET", str, true);
 
 		xhr.onreadystatechange = function() {
-			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+			if (xhr.readyState == 4 && xhr.status == 200) {
 				alert("Succesfully removed!");
 				window.location = "/profile";
 			}
