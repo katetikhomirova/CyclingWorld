@@ -6,6 +6,37 @@ var vmarkers = [];
 var g = google.maps;
 var distance;
 
+var calculateDistance = function() {
+
+	var dist = 0;
+
+	if (markers.length > 1) {
+		for (var im = 0; im < markers.length - 1; im++) {
+			var marpos1 = markers[im].getPosition();
+			var marpos2 = markers[im + 1].getPosition();
+
+			var R = 6371000;
+			var dLat = (marpos2.lat() - marpos1.lat()) * Math.PI / 180;
+			var dLon = (marpos2.lng() - marpos1.lng()) * Math.PI / 180;
+			var a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+					+ Math.cos(marpos1.lat() * Math.PI / 180)
+					* Math.cos(marpos2.lat() * Math.PI / 180)
+					* Math.sin(dLon / 2) * Math.sin(dLon / 2);
+			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+			var d = R * c;
+			dist = dist + d;
+
+		}
+		distance = Math.round(dist / 10) / 100;
+	}
+};
+
+var changeDistance = function() {
+	calculateDistance();
+	var str = distance + " km";
+	document.getElementById("distanceLbl").innerHTML = str;
+}
+
 var initMap = function(mapHolder) {
 	markers = [];
 	vmarkers = [];
@@ -97,6 +128,7 @@ var createMarker = function(point) {
 		}
 		m = null;
 	});
+	changeDistance();
 	return marker;
 };
 
@@ -179,6 +211,7 @@ var createVMarker = function(point) {
 			}
 		}
 	});
+	changeDistance();
 	return marker;
 };
 
@@ -200,7 +233,7 @@ var moveVMarker = function(index) {
 	}
 	newpos = null;
 	index = null;
-
+	changeDistance();
 };
 
 var removeVMarkers = function(index) {
@@ -223,39 +256,13 @@ var removeVMarkers = function(index) {
 		newpos = null;
 	}
 	index = null;
+	changeDistance();
 };
 
 window.onload = function() {
 	initMap('mapcontainer');
 	initPolyline();
 };
-
-// Функция для определения длины полилинии
-function distance() {
-
-	var dist = 0;
-
-	if (markers.length > 0) {
-		for (var im = 0; im < markers.length - 1; im++) {
-			var marpos1 = markers[im].getPosition();
-			var marpos2 = markers[im + 1].getPosition();
-
-			var R = 6371000; // km (коэффициент для определения расстояния
-			// между двумя точками в километрах)
-			var dLat = (marpos2.lat() - marpos1.lat()) * Math.PI / 180;
-			var dLon = (marpos2.lng() - marpos1.lng()) * Math.PI / 180;
-			var a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
-					+ Math.cos(marpos1.lat() * Math.PI / 180)
-					* Math.cos(marpos2.lat() * Math.PI / 180)
-					* Math.sin(dLon / 2) * Math.sin(dLon / 2);
-			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-			var d = R * c;
-			dist = dist + d;
-
-		}
-		distance = Math.round(dist / 10) / 100;
-	}
-}
 
 function get_cookie(cookie_name) {
 	var results = document.cookie.match('(^|;) ?' + cookie_name
@@ -268,8 +275,7 @@ function get_cookie(cookie_name) {
 };
 
 function savePolyline() {
-	distance();
-	console.log(distance);
+	calculateDistance();
 	var isPublic;
 	if (document.getElementById('isPublic').checked)
 		isPublic = "true";

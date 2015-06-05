@@ -5,7 +5,6 @@
 <link href="/resources/css/addNewRoute.css" rel="stylesheet">
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script src="/resources/js/map.js"></script>
 </head>
 <body>
 	<div id="fb-root"></div>
@@ -36,7 +35,7 @@
 									<h5>Distance:</h5>
 								</div>
 								<div class="col-md-1">
-									<h5 id="distance">0 km</h5>
+									<h5 id="distanceLbl">0 km</h5>
 								</div>
 								<div class="col-md-2">
 									<div id="nameLbl">
@@ -75,5 +74,6 @@
 	</div>
 	<%@ include file="includes/footer.html"%>
 	<script type="text/javascript" src="resources/js/leftProfileWindow.js"></script>
+	<script src="/resources/js/map.js"></script>
 </body>
 </html>

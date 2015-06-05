@@ -5,7 +5,6 @@ window.onload = function() {
 			var htmlStr = "";
 			var routes = JSON.parse(xmlHttp.responseText);
 			for ( var i in routes) {
-				var coordsString = getCoordsString(routes[i].coords);
 				htmlStr += "<hr><div class=\"row myRow\"><div class=\"col-md-6\"><h5>";
 				htmlStr += routes[i].name;
 				htmlStr += "</h5></div>";
