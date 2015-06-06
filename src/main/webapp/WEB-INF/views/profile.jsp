@@ -4,7 +4,7 @@
 <link href="/resources/css/profile.css" rel="stylesheet">
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script src="/resources/js/mapShow.js"></script>
+<script src="/resources/js/map/mapShow.js"></script>
 </head>
 <body>
 	<div id="fb-root"></div>

@@ -12,8 +12,8 @@
 
 <!-- Bootstrap core CSS -->
 <link
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
+	href="/resources/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
 <link
-	href="${pageContext.request.contextPath}/resources/css/mainTheme.css"
+	href="/resources/css/mainTheme.css"
 	rel="stylesheet">

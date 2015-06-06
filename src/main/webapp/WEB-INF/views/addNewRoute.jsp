@@ -74,6 +74,6 @@
 	</div>
 	<%@ include file="includes/footer.html"%>
 	<script type="text/javascript" src="resources/js/leftProfileWindow.js"></script>
-	<script src="/resources/js/map.js"></script>
+	<script src="/resources/js/map/mapCreate.js"></script>
 </body>
 </html>
