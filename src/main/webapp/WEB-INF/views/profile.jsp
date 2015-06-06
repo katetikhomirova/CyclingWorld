@@ -19,7 +19,7 @@
 						<!-- <div class="col-md-12">  -->
 						<div class="row myRow">
 							<div class="col-md-10">
-								<h4>My routes:</h4>
+								<h3>My routes:</h3>
 							</div>
 							<div class="col-md-2">
 								<input type="button" class="btn btn-large btn-primary"

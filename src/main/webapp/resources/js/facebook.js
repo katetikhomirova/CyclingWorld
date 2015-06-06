@@ -50,6 +50,8 @@ function login() {
 			console.log("login error");
 		}
 
+	}, {
+		scope : 'email,user_friends'
 	});
 }
 

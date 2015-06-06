@@ -7,9 +7,9 @@ window.onload = function() {
 			var routes = JSON.parse(xmlHttp.responseText);
 			if (routes.length > 0) {
 				for ( var i in routes) {
-					htmlStr += "<hr><div class=\"row myRow\"><div class=\"col-md-6\"><h5>";
+					htmlStr += "<hr><div class=\"row myRow\"><div class=\"col-md-6\"><h4>";
 					htmlStr += routes[i].name;
-					htmlStr += "</h5></div>";
+					htmlStr += "</h4></div>";
 					htmlStr += "<div class=\"col-md-2\"><h5>";
 					htmlStr += routes[i].distance;
 					htmlStr += "km</h5></div>";
