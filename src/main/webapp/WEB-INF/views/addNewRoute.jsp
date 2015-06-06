@@ -31,31 +31,31 @@
 
 							</div>
 							<div class="row myRow">
-								<div class="col-md-2">
+								<div class="col-md-2 col-sm-2 col-xs-2">
 									<h5>Distance:</h5>
 								</div>
-								<div class="col-md-1">
+								<div class="col-md-1 col-sm-2 col-xs-2">
 									<h5 id="distanceLbl">0 km</h5>
 								</div>
-								<div class="col-md-2">
+								<div class="col-md-2 col-sm-1 col-xs-2">
 									<div id="nameLbl">
 										<h5>Name:</h5>
 									</div>
 								</div>
-								<div class="col-md-3">
+								<div class="col-md-3 col-sm-3 col-xs-6">
 									<div id="nameInput">
 										<input id="name" type="text">
 									</div>
 								</div>
-								<div class="col-md-1">
+								<div class="col-md-1 col-sm-2 col-xs-3">
 									<div>
 										<h5>Public:</h5>
 									</div>
 								</div>
-								<div class="col-md-1">
+								<div class="col-md-1 col-sm-1 col-xs-9">
 									<input type="checkbox" id="isPublic">
 								</div>
-								<div class="col-md-2">
+								<div class="col-md-2 col-sm-1 col-xs-12">
 									<input type="button" class="btn btn-large btn-primary"
 										onclick="savePolyline();" value="Save" />
 								</div>

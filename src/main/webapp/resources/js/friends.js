@@ -21,11 +21,11 @@ window.fbAsyncInit = function() {
 										function(response) {
 											var htmlStr = "";
 											for ( var i in response.data) {
-												htmlStr += "<hr><div class=\"row myRow\"><div class=\"col-md-2\">";
+												htmlStr += "<hr><div class=\"row myRow\"><div class=\"col-md-2 col-sm-3 col-xs-4\">";
 												htmlStr += "<div class = \"friendsPic\"><img src=\"https://graph.facebook.com/"
 														+ response.data[i].id
 														+ "/picture?type=normal\" class=\"img-responsive\"></div>";
-												htmlStr += "</div><div class=\"col-md-10\"><div class=\"row\"><a><h4>"
+												htmlStr += "</div><div class=\"col-md-10 col-sm-9 col-xs-8\"><div class=\"row\"><a><h4>"
 														+ response.data[i].name
 														+ "</h4></a></div><div class=\"row\" id=\""
 														+ response.data[i].id
