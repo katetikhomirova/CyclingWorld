@@ -1,4 +1,6 @@
 var ids = [];
+var requests = [];
+var req;
 
 window.fbAsyncInit = function() {
 	FB.init({
@@ -32,35 +34,37 @@ window.fbAsyncInit = function() {
 											}
 											document
 													.getElementById("friendsList").innerHTML = htmlStr;
-											for ( var i in ids) {
-												xhr = new XMLHttpRequest();
-												var str = '/rest/getRouteCount/'
-														+ ids[i];
-												xhr.open("GET", str, true);
+											for (var i = 0; i < ids.length; i++) {
+												req = new XMLHttpRequest();
 
-												xhr.onreadystatechange = function() {
-													if (xhr.readyState == 4
-															&& xhr.status == 200) {
-														var count = JSON
-																.parse(xhr.responseText)
-														var str = "";
-														if (count == 1) {
-															str = "<h5> Has 1 public route.</h5>";
+												req.onreadystatechange = function() {
+													if (this.readyState == 4
+															&& this.status == 200) {
+														var strToInsert = "";
+														var res = JSON
+																.parse(this.responseText);
+														console.log(res);
+														if (res[1] == "1") {
+															strToInsert = "<h5> Has 1 public route.</h5>";
 														}
-														if (count == 0) {
-															str = "<h5>Hasn't public routes.</h5>";
+														if (res[1] == "0") {
+															strToInsert = "<h5>Hasn't public routes.</h5>";
 														}
-														if (count > 1) {
-															str = "<h5> Has "
-																	+ count
+														if (res[1] > 1) {
+															strToInsert = "<h5> Has "
+																	+ res[1]
 																	+ " public routes.</h5>";
 														}
 														document
 																.getElementById(""
-																		+ ids[i]).innerHTML = str;
+																		+ res[0]).innerHTML = strToInsert;
 													}
 												}
-												xhr.send(null);
+												var str = '/rest/getRouteCount/'
+														+ ids[i];
+												req.open("GET", str, true);
+												requests.push(req);
+												req.send(null);
 											}
 										});
 						/*

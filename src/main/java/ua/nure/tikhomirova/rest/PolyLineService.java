@@ -90,14 +90,17 @@ public class PolyLineService {
 
 	@ResponseBody
 	@RequestMapping(value = "/getRouteCount/{id}", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
-	public int getRouteCount(@PathVariable String id) {
-		int count = 0;
+	public List<String> getRouteCount(@PathVariable String id) {
+		List<String> res = new ArrayList<String>();
+		res.add(id);
 		try {
 			List<Route> routes = MongoDBManager.getInstance().getRoutes(id);
-			return routes.size();
+			res.add(String.valueOf(routes.size()));
+
 		} catch (UnknownHostException e) {
+			res.add("0");
 			e.printStackTrace();
 		}
-		return count;
+		return res;
 	}
 }
