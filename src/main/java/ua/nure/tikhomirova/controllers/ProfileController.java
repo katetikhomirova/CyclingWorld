@@ -21,21 +21,17 @@ public class ProfileController {
 			.getLogger(HomeController.class);
 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String home(HttpServletRequest request, Model model) {
+	public String profile(HttpServletRequest request, Model model) {
 		Cookie[] cookies = request.getCookies();
-		for (Cookie c : cookies)
-			if (c.getName().equals("id"))
-				if (c.getValue().equals(""))
-					return "home";
-				else {
-					try {
-						model.addAttribute("routes", MongoDBManager
-								.getInstance().getRoutes(c.getValue()));
-					} catch (UnknownHostException e) {
-						e.printStackTrace();
+		if (cookies != null) {
+			for (Cookie c : cookies)
+				if (c.getName().equals("id"))
+					if (c.getValue().equals(""))
+						return "home";
+					else {
+						return "profile";
 					}
-					return "profile";
-				}
+		}
 		return "home";
 	}
 }
