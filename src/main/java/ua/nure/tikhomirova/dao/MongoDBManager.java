@@ -33,7 +33,6 @@ public class MongoDBManager implements DBManager {
 
 	@Override
 	public Route getRoute(String userId, String routeName) {
-		List<Route> res = new ArrayList<Route>();
 		DBCollection routes = db.getCollection("Routes");
 		// Generate search query
 		BasicDBObject andQuery = new BasicDBObject();
