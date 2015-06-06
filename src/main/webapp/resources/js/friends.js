@@ -95,6 +95,14 @@ function logout() {
 		window.location = "/";
 	})
 }
+
+function inviteFriend() {
+	FB.ui({
+		app_id : 1436561916645343,
+		method : 'send',
+		link : 'http://cyclingworld.cfapps.io',
+	});
+}
 (function(d, s, id) {
 	var js, fjs = d.getElementsByTagName(s)[0];
 	if (d.getElementById(id))
@@ -107,8 +115,4 @@ function logout() {
 
 window.onload = function() {
 	changeList();
-}
-
-function inviteFriend() {
-
 }
