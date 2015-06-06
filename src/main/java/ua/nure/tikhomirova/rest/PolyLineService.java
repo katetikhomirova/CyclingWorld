@@ -29,10 +29,11 @@ public class PolyLineService {
 		return null;
 	}
 
-	@RequestMapping(value = "/removeRoute/{id}/{routeName}", method = RequestMethod.GET)
+	@RequestMapping(value = "/removeRoute/{id}/{routeName:.+}", method = RequestMethod.GET)
 	public void removeRoute(@PathVariable String id,
 			@PathVariable String routeName) {
 		try {
+			System.out.println(routeName);
 			MongoDBManager.getInstance().removeRoute(
 					MongoDBManager.getInstance().getRoute(id, routeName));
 		} catch (UnknownHostException e) {
@@ -41,7 +42,7 @@ public class PolyLineService {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/getRoute/{id}/{routeName}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getRoute/{id}/{routeName:.+}", method = RequestMethod.GET)
 	public Route getRoute(@PathVariable String id,
 			@PathVariable String routeName) {
 		try {
