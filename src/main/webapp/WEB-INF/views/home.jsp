@@ -1,13 +1,10 @@
 <%@ include file="includes/header.jsp"%>
 
-<link
-	href="${pageContext.request.contextPath}/resources/css/homePage.css"
-	rel="stylesheet">
+<link href="/resources/css/homePage.css" rel="stylesheet">
 </head>
 <body>
 	<div id="fb-root"></div>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/facebook.js"></script>
+	<script src="/resources/js/facebook.js"></script>
 	<div id="wrap">
 		<%@ include file="includes/menu.jsp"%>
 		<div class="container">
@@ -34,6 +31,6 @@
 		<div id="push"></div>
 	</div>
 	<%@ include file="includes/footer.html"%>
-	
+
 </body>
 </html>
