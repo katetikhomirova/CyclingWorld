@@ -15,7 +15,7 @@ function initMap(routeName) {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var responseRoute = JSON.parse(xhr.responseText);
-			
+
 			markers = [];
 			vmarkers = [];
 			var mapOptions = {
@@ -31,7 +31,6 @@ function initMap(routeName) {
 
 			coords = [];
 			for ( var i in responseRoute.coords) {
-				alert(responseRoute.coords[i].lat + responseRoute.coords[i].lng);
 				coords.push(new google.maps.LatLng(responseRoute.coords[i].lat,
 						responseRoute.coords[i].lng));
 			}

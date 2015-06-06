@@ -4,20 +4,23 @@ window.onload = function() {
 		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
 			var htmlStr = "";
 			var routes = JSON.parse(xmlHttp.responseText);
-			for ( var i in routes) {
-				htmlStr += "<hr><div class=\"row myRow\"><div class=\"col-md-6\"><h5>";
-				htmlStr += routes[i].name;
-				htmlStr += "</h5></div>";
-				htmlStr += "<div class=\"col-md-2\"><h5>";
-				htmlStr += routes[i].distance;
-				htmlStr += "km</h5></div>";
-				htmlStr += "<div class=\"col-md-2\"><button class=\"btn btn-large btn-primary\" onclick=\"initMap('";
-				htmlStr += routes[i].name + "');\">Show</button>";
-				htmlStr += "</div><div class=\"col-md-2\"><button class=\"btn btn-large btn-danger removeBtn\" onclick=\"removeRoute('";
-				htmlStr += routes[i].name + "');\">";
-				htmlStr += "<i class=\"glyphicon glyphicon-remove\"></i></button></div></div>";
+			if (routes.length > 0) {
+				for ( var i in routes) {
+					htmlStr += "<hr><div class=\"row myRow\"><div class=\"col-md-6\"><h5>";
+					htmlStr += routes[i].name;
+					htmlStr += "</h5></div>";
+					htmlStr += "<div class=\"col-md-2\"><h5>";
+					htmlStr += routes[i].distance;
+					htmlStr += "km</h5></div>";
+					htmlStr += "<div class=\"col-md-2\"><button class=\"btn btn-large btn-primary\" onclick=\"initMap('";
+					htmlStr += routes[i].name + "');\">Show</button>";
+					htmlStr += "</div><div class=\"col-md-2\"><button class=\"btn btn-large btn-danger removeBtn\" onclick=\"removeRoute('";
+					htmlStr += routes[i].name + "');\">";
+					htmlStr += "<i class=\"glyphicon glyphicon-remove\"></i></button></div></div>";
 
-			}
+				}
+			} else
+				htmlStr = "<hr><div class=\"row myRow\">There are no routes yet...</div>";
 			document.getElementById("routeList").innerHTML = htmlStr;
 
 		}
