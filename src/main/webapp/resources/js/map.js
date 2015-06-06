@@ -274,6 +274,7 @@ var removeVMarkers = function(index) {
 };
 
 window.onload = function() {
+	changeList();
 	initMap('mapcontainer');
 	initPolyline();
 };

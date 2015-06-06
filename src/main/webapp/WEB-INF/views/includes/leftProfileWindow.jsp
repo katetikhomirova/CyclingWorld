@@ -20,7 +20,7 @@
 				<li id="addNewRouteLink"><a href="/addNewRoute"> <i
 						class="glyphicon glyphicon-plus"></i> Add route
 				</a></li>
-				<li><a href="/friends" id="friendsLink"> <i
+				<li id="friendsLink"><a href="/friends"> <i
 						class="glyphicon glyphicon-user"></i> Friends
 				</a></li>
 				<li><a href="#"> <i class="glyphicon glyphicon-search"></i>

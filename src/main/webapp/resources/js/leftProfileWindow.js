@@ -15,21 +15,17 @@ var im = document.getElementById("userImage")
 
 changeList = function() {
 	if (window.location.pathname == "/profile") {
-		alert("Profile");
 		$('#profileLink').addClass('active');
 		$('#friendsLink').removeClass('active');
 		$('#addNewRouteLink').removeClass('active');
 	}
 	if (window.location.pathname == "/friends") {
-		alert("Friends");
-		alert($('#friendsLink').innerHTML);
 		$('#friendsLink').addClass('active');
 		$('#profileLink').removeClass('active');
 		$('#addNewRouteLink').removeClass('active');
 	}
 
 	if (window.location.pathname == "/addNewRoute") {
-		alert("Add new route");
 		$('#addNewRouteLink').addClass('active');
 		$('#friendsLink').removeClass('active');
 		$('#profileLink').removeClass('active');
