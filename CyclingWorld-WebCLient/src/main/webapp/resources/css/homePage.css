@@ -1,0 +1,35 @@
+#homeLoginForm {
+	background-image: url('../images/home.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-top: 10pt;
+	padding-top: 150pt;
+	padding-bottom: 150pt;
+}
+
+.well {
+	margin: 0 auto 10px;
+}
+
+#logInButton {
+	height: 100%;
+	width: 100%;
+	visibility: hidden;
+}
+
+.well p {
+	color: #3e3e3e;
+	text-align: center;
+	font-size: 14pt;
+	padding-top: 5pt;
+}
+
+#greetings {
+	font-size: 12pt;
+}
+
+.col-md-6 a {
+	position: relative;
+	top: 5pt;
+}
