@@ -25,7 +25,11 @@ window.fbAsyncInit = function() {
 												htmlStr += "<div class = \"friendsPic\"><img src=\"https://graph.facebook.com/"
 														+ response.data[i].id
 														+ "/picture?type=normal\" class=\"img-responsive\"></div>";
-												htmlStr += "</div><div class=\"col-md-10 col-sm-9 col-xs-8\"><div class=\"row\"><a><h4>"
+												htmlStr += "</div><div class=\"col-md-10 col-sm-9 col-xs-8\"><div class=\"row\"><a href=\"/profile/"
+														+ response.data[i].id
+														+ "/"
+														+ response.data[i].name
+														+ "\"><h4>"
 														+ response.data[i].name
 														+ "</h4></a></div><div class=\"row\" id=\""
 														+ response.data[i].id
@@ -114,5 +118,5 @@ function inviteFriend() {
 }(document, 'script', 'facebook-jssdk'));
 
 window.onload = function() {
-	changeList();
+	changeList("friends");
 }

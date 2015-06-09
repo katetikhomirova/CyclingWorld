@@ -1,10 +1,10 @@
 <%@ include file="includes/header.jsp"%>
 
-<link href="/resources/css/homePage.css" rel="stylesheet">
+<link href="http://cyclingworld.cfapps.io/resources/css/homePage.css" rel="stylesheet">
 </head>
 <body>
 	<div id="fb-root"></div>
-	<script src="/resources/js/facebook.js"></script>
+	<script src="http://cyclingworld.cfapps.io/resources/js/facebook.js"></script>
 	<div id="wrap">
 		<%@ include file="includes/menu.jsp"%>
 		<div class="container">

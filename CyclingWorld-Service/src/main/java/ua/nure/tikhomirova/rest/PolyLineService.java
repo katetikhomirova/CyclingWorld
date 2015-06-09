@@ -28,6 +28,17 @@ public class PolyLineService {
 		}
 		return null;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getPublicRoutes/{id}", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
+	public List<Route> getPublicRoutes(@PathVariable String id) {
+		try {
+			return MongoDBManager.getInstance().getPublicRoutes(id);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	@RequestMapping(value = "/removeRoute/{id}/{routeName:.+}", method = RequestMethod.GET)
 	public void removeRoute(@PathVariable String id,
@@ -42,7 +53,7 @@ public class PolyLineService {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/getRoute/{id}/{routeName:.+}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getRoute/{id}/{routeName:.+}", method = RequestMethod.GET, produces = "application/json",  headers = "Accept=application/json")
 	public Route getRoute(@PathVariable String id,
 			@PathVariable String routeName) {
 		try {

@@ -1,11 +1,11 @@
 <%@ include file="includes/header.jsp"%>
 
-<link href="/resources/css/homePage.css" rel="stylesheet">
-<link href="/resources/css/profile.css" rel="stylesheet">
-<link href="/resources/css/friends.css" rel="stylesheet">
+<link href="http://cyclingworld.cfapps.io/resources/css/homePage.css" rel="stylesheet">
+<link href="http://cyclingworld.cfapps.io/resources/css/profile.css" rel="stylesheet">
+<link href="http://cyclingworld.cfapps.io/resources/css/friends.css" rel="stylesheet">
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script src="/resources/js/mapShow.js"></script>
+<script src="http://cyclingworld.cfapps.io/resources/js/mapShow.js"></script>
 </head>
 <body>
 	<div id="wrap">
@@ -34,7 +34,7 @@
 	</div>
 	<div id="fb-root"></div>
 	<%@ include file="includes/footer.html"%>
-	<script type="text/javascript" src="resources/js/leftProfileWindow.js"></script>
-	<script type="text/javascript" src="resources/js/friends.js"></script>
+	<script type="text/javascript" src="http://cyclingworld.cfapps.io/resources/js/leftProfileWindow.js"></script>
+	<script type="text/javascript" src="http://cyclingworld.cfapps.io/resources/js/friends.js"></script>
 </body>
 </html>

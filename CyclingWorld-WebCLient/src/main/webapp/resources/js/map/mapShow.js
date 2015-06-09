@@ -6,9 +6,9 @@ var vmarkers = [];
 var g = google.maps;
 var distance;
 
-function initMap(routeName) {
+function initMap(id, routeName) {
 	var xhr = new XMLHttpRequest();
-	var str = 'http://cyclingworld-service.cfapps.io/rest/getRoute/' + get_cookie("id") + '/' + routeName;
+	var str = 'http://cyclingworld-service.cfapps.io/rest/getRoute/' + id + '/' + routeName;
 	xhr.open("GET", str, true);
 
 	xhr.onreadystatechange = function() {

@@ -12,8 +12,8 @@
 
 <!-- Bootstrap core CSS -->
 <link
-	href="/resources/css/bootstrap/bootstrap.min.css"
+	href="http://cyclingworld.cfapps.io/resources/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
 <link
-	href="/resources/css/mainTheme.css"
+	href="http://cyclingworld.cfapps.io/resources/css/mainTheme.css"
 	rel="stylesheet">

@@ -36,10 +36,10 @@ public class MongoDBManager implements DBManager {
 		DBCollection routes = db.getCollection("Routes");
 		// Generate search query
 		BasicDBObject andQuery = new BasicDBObject();
-		List<BasicDBObject> obj = new ArrayList<BasicDBObject>();
-		obj.add(new BasicDBObject("userId", userId));
-		obj.add(new BasicDBObject("name", routeName));
-		andQuery.put("$and", obj);
+		List<BasicDBObject> query = new ArrayList<BasicDBObject>();
+		query.add(new BasicDBObject("userId", userId));
+		query.add(new BasicDBObject("name", routeName));
+		andQuery.put("$and", query);
 		DBCursor docs = routes.find(andQuery);
 		if (docs.hasNext())
 			return dbObjectToRoute(docs.next());
@@ -53,6 +53,24 @@ public class MongoDBManager implements DBManager {
 		BasicDBObject findQuery = new BasicDBObject("userId", userId);
 
 		DBCursor docs = routes.find(findQuery);
+
+		while (docs.hasNext()) {
+			DBObject doc = docs.next();
+			res.add(dbObjectToRoute(doc));
+		}
+		return res;
+	}
+
+	@Override
+	public List<Route> getPublicRoutes(String userId) {
+		List<Route> res = new ArrayList<Route>();
+		DBCollection routes = db.getCollection("Routes");
+		BasicDBObject andQuery = new BasicDBObject();
+		List<BasicDBObject> query = new ArrayList<BasicDBObject>();
+		query.add(new BasicDBObject("userId", userId));
+		query.add(new BasicDBObject("isPub", "true"));
+		andQuery.put("$and", query);
+		DBCursor docs = routes.find(andQuery);
 
 		while (docs.hasNext()) {
 			DBObject doc = docs.next();

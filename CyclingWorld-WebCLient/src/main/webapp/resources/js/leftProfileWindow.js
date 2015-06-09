@@ -13,19 +13,19 @@ var im = document.getElementById("userImage")
 				"http://graph.facebook.com/" + get_cookie("id")
 						+ "/picture?type=large");
 
-changeList = function() {
-	if (window.location.pathname == "/profile") {
+changeList = function(page) {
+	if (page == "profile") {
 		$('#profileLink').addClass('active');
 		$('#friendsLink').removeClass('active');
 		$('#addNewRouteLink').removeClass('active');
 	}
-	if (window.location.pathname == "/friends") {
+	if (page == "friends") {
 		$('#friendsLink').addClass('active');
 		$('#profileLink').removeClass('active');
 		$('#addNewRouteLink').removeClass('active');
 	}
 
-	if (window.location.pathname == "/addNewRoute") {
+	if (page == "addNewRoute") {
 		$('#addNewRouteLink').addClass('active');
 		$('#friendsLink').removeClass('active');
 		$('#profileLink').removeClass('active');

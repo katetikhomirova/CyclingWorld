@@ -1,5 +1,5 @@
 window.onload = function() {
-	changeList();
+	changeList("profile");
 	xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function() {
 		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
@@ -14,9 +14,11 @@ window.onload = function() {
 					htmlStr += routes[i].distance;
 					htmlStr += "km</h5></div>";
 					htmlStr += "<div class=\"col-md-2 col-sm-6 col-xs-6\"><button class=\"btn btn-large btn-primary\" onclick=\"initMap('";
-					htmlStr += routes[i].name + "');\">Show</button>";
+					htmlStr += get_cookie("id") + "','" + routes[i].name
+							+ "');\">Show</button>";
 					htmlStr += "</div><div class=\"col-md-2 col-sm-6 col-xs-6\"><button class=\"btn btn-large btn-danger removeBtn\" onclick=\"removeRoute('";
-					htmlStr += routes[i].name + "');\">";
+					htmlStr += get_cookie("id") + "','" + routes[i].name
+							+ "');\">";
 					htmlStr += "<i class=\"glyphicon glyphicon-remove\"></i></button></div></div>";
 
 				}
@@ -27,7 +29,9 @@ window.onload = function() {
 		}
 
 	}
-	xmlHttp.open("GET", 'http://cyclingworld-service.cfapps.io/rest/getPolyLines/' + get_cookie("id"), true);
+	xmlHttp.open("GET",
+			'http://cyclingworld-service.cfapps.io/rest/getPolyLines/'
+					+ get_cookie("id"), true);
 	xmlHttp.setRequestHeader("Accept", "application/json");
 	xmlHttp.send(null);
 }
@@ -36,7 +40,8 @@ function removeRoute(name) {
 
 	if (confirm('Are you sure?')) {
 		var xhr = new XMLHttpRequest();
-		var str = 'http://cyclingworld-service.cfapps.io/rest/removeRoute/' + get_cookie("id") + '/' + name;
+		var str = 'http://cyclingworld-service.cfapps.io/rest/removeRoute/'
+				+ get_cookie("id") + '/' + name;
 		xhr.open("GET", str, true);
 
 		xhr.onreadystatechange = function() {

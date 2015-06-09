@@ -1,14 +1,14 @@
 <%@ include file="includes/header.jsp"%>
 
-<link href="/resources/css/homePage.css" rel="stylesheet">
-<link href="/resources/css/profile.css" rel="stylesheet">
-<link href="/resources/css/addNewRoute.css" rel="stylesheet">
+<link href="http://cyclingworld.cfapps.io/resources/css/homePage.css" rel="stylesheet">
+<link href="http://cyclingworld.cfapps.io/resources/css/profile.css" rel="stylesheet">
+<link href="http://cyclingworld.cfapps.io/resources/css/addNewRoute.css" rel="stylesheet">
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false"></script>
 </head>
 <body>
 	<div id="fb-root"></div>
-	<script src="/resources/js/facebook.js"></script>
+	<script src="http://cyclingworld.cfapps.io/resources/js/facebook.js"></script>
 	<div id="wrap">
 		<%@ include file="includes/menu.jsp"%>
 		<div class="container">
@@ -73,7 +73,7 @@
 		<div id="push"></div>
 	</div>
 	<%@ include file="includes/footer.html"%>
-	<script type="text/javascript" src="resources/js/leftProfileWindow.js"></script>
-	<script src="/resources/js/map/mapCreate.js"></script>
+	<script type="text/javascript" src="http://cyclingworld.cfapps.io/resources/js/leftProfileWindow.js"></script>
+	<script src="http://cyclingworld.cfapps.io/resources/js/map/mapCreate.js"></script>
 </body>
 </html>

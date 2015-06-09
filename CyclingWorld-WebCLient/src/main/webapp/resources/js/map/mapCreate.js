@@ -8,7 +8,8 @@ var distance;
 var names;
 
 var xhr = new XMLHttpRequest();
-var str = 'http://cyclingworld-service.cfapps.io/rest/getRouteNames/' + get_cookie("id");
+var str = 'http://cyclingworld-service.cfapps.io/rest/getRouteNames/'
+		+ get_cookie("id");
 xhr.open("GET", str, true);
 
 xhr.onreadystatechange = function() {
@@ -102,12 +103,10 @@ var mapLeftClick = function(event) {
 };
 
 var createMarker = function(point) {
-	var imageNormal = new g.MarkerImage(
-			"http://astrology.grimuar.info/images/kvadrat.png", new g.Size(11,
-					11), new g.Point(0, 0), new g.Point(6, 6));
-	var imageHover = new g.MarkerImage(
-			"http://astrology.grimuar.info/images/kvadrat.png", new g.Size(11,
-					11), new g.Point(0, 0), new g.Point(6, 6));
+	var imageNormal = new g.MarkerImage("/resources/images/marker.png",
+			new g.Size(11, 11), new g.Point(0, 0), new g.Point(6, 6));
+	var imageHover = new g.MarkerImage("/resources/images/markerHover.png",
+			new g.Size(11, 11), new g.Point(0, 0), new g.Point(6, 6));
 	var marker = new g.Marker({
 		position : point,
 		map : map,
@@ -148,12 +147,11 @@ var createMarker = function(point) {
 
 var createVMarker = function(point) {
 	var prevpoint = markers[markers.length - 2].getPosition();
-	var imageNormal = new g.MarkerImage(
-			"http://astrology.grimuar.info/images/kvadrat.png", new g.Size(11,
-					11), new g.Point(0, 0), new g.Point(6, 6));
-	var imageHover = new g.MarkerImage(
-			"http://astrology.grimuar.info/images/kvadrat.png", new g.Size(11,
-					11), new g.Point(0, 0), new g.Point(6, 6));
+
+	var imageNormal = new g.MarkerImage("/resources/images/marker.png",
+			new g.Size(11, 11), new g.Point(0, 0), new g.Point(6, 6));
+	var imageHover = new g.MarkerImage("/resources/images/markerHover.png",
+			new g.Size(11, 11), new g.Point(0, 0), new g.Point(6, 6));
 	var marker = new g.Marker({
 		position : new g.LatLng(point.lat()
 				- (0.5 * (point.lat() - prevpoint.lat())), point.lng()
@@ -274,7 +272,7 @@ var removeVMarkers = function(index) {
 };
 
 window.onload = function() {
-	changeList();
+	changeList("addNewRoute");
 	initMap('mapcontainer');
 	initPolyline();
 };
@@ -297,8 +295,13 @@ function savePolyline() {
 			isPublic = "true";
 		else
 			isPublic = "false";
-		var url = "http://cyclingworld-service.cfapps.io/rest/savePolyLine?line=" + get_cookie("id") + ","
-				+ document.getElementById('name').value + "," + distance + ","
+		var url = "http://cyclingworld-service.cfapps.io/rest/savePolyLine?line="
+				+ get_cookie("id")
+				+ ","
+				+ document.getElementById('name').value
+				+ ","
+				+ distance
+				+ ","
 				+ isPublic;
 		for (var i = 0; i < polyLine.getPath().getLength(); i++) {
 			url = url + "," + polyLine.getPath().getAt(i).toUrlValue();
