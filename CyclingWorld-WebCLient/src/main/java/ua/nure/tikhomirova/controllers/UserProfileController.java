@@ -1,5 +1,8 @@
 package ua.nure.tikhomirova.controllers;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +18,7 @@ public class UserProfileController {
 	@RequestMapping(value = "/profile/{id}/{name}", method = RequestMethod.GET)
 	public String profile(HttpServletRequest request,
 			HttpServletResponse response, @PathVariable String id,
-			@PathVariable String name) {
+			@PathVariable String name) {		
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie c : cookies)

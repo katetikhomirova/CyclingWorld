@@ -8,7 +8,7 @@ var distance;
 
 function initMap(id, routeName) {
 	var xhr = new XMLHttpRequest();
-	var str = 'http://cyclingworld-service.cfapps.io/rest/getRoute/' + id + '/' + routeName;
+	var str = 'http://cyclingworld-service.cfapps.io/rest/getRoute/' + id + '/' + encodeURIComponent(routeName);
 	xhr.open("GET", str, true);
 
 	xhr.onreadystatechange = function() {

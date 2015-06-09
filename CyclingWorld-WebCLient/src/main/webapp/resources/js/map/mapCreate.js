@@ -7,19 +7,6 @@ var g = google.maps;
 var distance;
 var names;
 
-var xhr = new XMLHttpRequest();
-var str = 'http://cyclingworld-service.cfapps.io/rest/getRouteNames/'
-		+ get_cookie("id");
-xhr.open("GET", str, true);
-
-xhr.onreadystatechange = function() {
-	if (xhr.readyState == 4 && xhr.status == 200) {
-		names = JSON.parse(xhr.responseText);
-	}
-}
-xhr.setRequestHeader("Accept", "application/json");
-xhr.send(null);
-
 var calculateDistance = function() {
 
 	var dist = 0;
@@ -287,33 +274,6 @@ function get_cookie(cookie_name) {
 		return null;
 };
 
-function savePolyline() {
-	calculateDistance();
-	if (validate()) {
-		var isPublic;
-		if (document.getElementById('isPublic').checked)
-			isPublic = "true";
-		else
-			isPublic = "false";
-		var url = "http://cyclingworld-service.cfapps.io/rest/savePolyLine?line="
-				+ get_cookie("id")
-				+ ","
-				+ document.getElementById('name').value
-				+ ","
-				+ distance
-				+ ","
-				+ isPublic;
-		for (var i = 0; i < polyLine.getPath().getLength(); i++) {
-			url = url + "," + polyLine.getPath().getAt(i).toUrlValue();
-		}
-		xmlHttp = new XMLHttpRequest();
-
-		xmlHttp.open("GET", url, true);
-		xmlHttp.send(null);
-		window.location = "/profile";
-	}
-}
-
 var validate = function() {
 	for ( var i in names)
 		if (document.getElementById('name').value == names[i]) {
@@ -329,4 +289,43 @@ var validate = function() {
 		return false;
 	}
 	return true;
+}
+
+function savePolyline() {
+	calculateDistance();
+	var xhr = new XMLHttpRequest();
+	var str = 'http://cyclingworld-service.cfapps.io/rest/getRouteNames/'
+			+ get_cookie("id");
+	xhr.open("GET", str, true);
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			names = JSON.parse(xhr.responseText);
+			if (validate()) {
+				var isPublic;
+				if (document.getElementById('isPublic').checked)
+					isPublic = "true";
+				else
+					isPublic = "false";
+				var url = "http://cyclingworld-service.cfapps.io/rest/savePolyLine?line="
+						+ get_cookie("id")
+						+ ","
+						+ encodeURIComponent(document.getElementById('name').value)
+						+ ","
+						+ distance + "," + isPublic;
+				for (var i = 0; i < polyLine.getPath().getLength(); i++) {
+					url = url + "," + polyLine.getPath().getAt(i).toUrlValue();
+				}
+				xmlHttp = new XMLHttpRequest();
+
+				xmlHttp.open("GET", url, true);
+				xmlHttp.send(null);
+				window.location = "/profile";
+			}
+		}
+
+	}
+
+	xhr.setRequestHeader("Accept", "application/json");
+	xhr.send(null);
 }

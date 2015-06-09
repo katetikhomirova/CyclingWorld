@@ -17,8 +17,7 @@ window.onload = function() {
 					htmlStr += get_cookie("id") + "','" + routes[i].name
 							+ "');\">Show</button>";
 					htmlStr += "</div><div class=\"col-md-2 col-sm-6 col-xs-6\"><button class=\"btn btn-large btn-danger removeBtn\" onclick=\"removeRoute('";
-					htmlStr += get_cookie("id") + "','" + routes[i].name
-							+ "');\">";
+					htmlStr += routes[i].name + "');\">";
 					htmlStr += "<i class=\"glyphicon glyphicon-remove\"></i></button></div></div>";
 
 				}
@@ -41,7 +40,7 @@ function removeRoute(name) {
 	if (confirm('Are you sure?')) {
 		var xhr = new XMLHttpRequest();
 		var str = 'http://cyclingworld-service.cfapps.io/rest/removeRoute/'
-				+ get_cookie("id") + '/' + name;
+				+ get_cookie("id") + '/' + encodeURIComponent(name);
 		xhr.open("GET", str, true);
 
 		xhr.onreadystatechange = function() {
