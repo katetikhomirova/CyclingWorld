@@ -16,7 +16,7 @@ public class MongoDBManager implements DBManager {
 
 	private MongoDBManager() throws UnknownHostException {
 		MongoClientURI uri = new MongoClientURI(
-				"mongodb://CloudFoundry_501rl3a6_17378t9e_7husld51:5xLkXbDZU_W8aMiJHb01y5c4Bdbvv9dh@ds043348.mongolab.com:43348/CloudFoundry_501rl3a6_17378t9e");
+				"mongodb://CloudFoundry_501rl3a6_17378t9e_vsmlgr06:3Aml02MM5asftnNacN8Pkv_FsGcsOAQ1@ds043348.mongolab.com:43348/CloudFoundry_501rl3a6_17378t9e");
 		client = new MongoClient(uri);
 		db = client.getDB(uri.getDatabase());
 	}
