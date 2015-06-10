@@ -85,6 +85,7 @@ public class Route {
 	}
 
 	public Route() {
+		coords = new ArrayList<Point>();
 	}
 
 }

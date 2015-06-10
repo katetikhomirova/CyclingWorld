@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UserProfileController {
 
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/profile/{id}/{name}", method = RequestMethod.GET)
 	public String profile(HttpServletRequest request,
 			HttpServletResponse response, @PathVariable String id,
-			@PathVariable String name) {		
+			@PathVariable String name) {
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie c : cookies)
@@ -35,7 +36,7 @@ public class UserProfileController {
 							}
 							if (cookie.getName().equals("requestedName")) {
 								nameWasFounded = true;
-								cookie.setValue(name);
+								cookie.setValue(URLEncoder.encode(name));
 							}
 						}
 						if (!idWasFounded) {
@@ -44,7 +45,7 @@ public class UserProfileController {
 						}
 						if (!nameWasFounded) {
 							Cookie requestedName = new Cookie("requestedName",
-									name);
+									URLEncoder.encode(name));
 							response.addCookie(requestedName);
 						}
 						return "userProfile";

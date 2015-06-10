@@ -16,7 +16,8 @@
 				Welcome, ${cookie.name.value}! <a href="#" onclick="logout()">logout</a>
 			</p>
 			<%
-				}
+				break;
+						}
 				//}
 			%>
 		</div>

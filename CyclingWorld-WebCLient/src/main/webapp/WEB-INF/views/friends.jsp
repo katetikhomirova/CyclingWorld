@@ -5,7 +5,6 @@
 <link href="http://cyclingworld.cfapps.io/resources/css/friends.css" rel="stylesheet">
 <script type="text/javascript"
 	src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script src="http://cyclingworld.cfapps.io/resources/js/mapShow.js"></script>
 </head>
 <body>
 	<div id="wrap">
@@ -17,7 +16,7 @@
 					<div class="profile-content">
 						<div class="row myRow">
 							<div class="col-md-6">
-								<h3>Friends:</h3>
+								<h4>Friends:</h4>
 							</div>
 							<div class="col-md-6">
 								<input type="button" class="btn btn-large btn-primary"

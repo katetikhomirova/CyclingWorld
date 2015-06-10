@@ -41,24 +41,25 @@ public class PolyLineService {
 	}
 
 	@RequestMapping(value = "/removeRoute/{id}/{routeName:.+}", method = RequestMethod.GET)
-	public void removeRoute(@PathVariable String id,
-			@PathVariable String routeName) {		
+	public boolean removeRoute(@PathVariable String id,
+			@PathVariable String routeName) {
 		try {
-			MongoDBManager.getInstance()
-					.removeRoute(
-							MongoDBManager.getInstance().getRoute(id,
-									routeName));
+			return MongoDBManager.getInstance().removeRoute(
+					MongoDBManager.getInstance().getRoute(id, routeName));
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/getRoute/{id}/{routeName:.+}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8", headers = "Accept=application/json")
 	public Route getRoute(@PathVariable String id,
-			@PathVariable String routeName) {		
+			@PathVariable String routeName) {
 		try {
-			return MongoDBManager.getInstance().getRoute(id, routeName);
+			Route route = MongoDBManager.getInstance().getRoute(id, routeName);
+			if (route.getCoords().size() != 0)
+				return route;
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
@@ -66,7 +67,7 @@ public class PolyLineService {
 	}
 
 	@RequestMapping(value = "/savePolyLine", method = RequestMethod.GET)
-	public void savePolyLine(@RequestParam(value = "line") String line) {
+	public boolean savePolyLine(@RequestParam(value = "line") String line) {
 		if (line != null) {
 			String[] res = line.split(",");
 			Route route = new Route();
@@ -75,13 +76,13 @@ public class PolyLineService {
 			route.setDistance(res[2]);
 			route.setIsPublic(res[3]);
 			route.addCoords(res, 4);
-
 			try {
-				MongoDBManager.getInstance().saveRoute(route);
+				return MongoDBManager.getInstance().saveRoute(route);
 			} catch (UnknownHostException e) {
 				e.printStackTrace();
 			}
 		}
+		return false;
 	}
 
 	@ResponseBody

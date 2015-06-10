@@ -28,7 +28,7 @@ window.fbAsyncInit = function() {
 												htmlStr += "</div><div class=\"col-md-10 col-sm-9 col-xs-8\"><div class=\"row\"><a href=\"/profile/"
 														+ response.data[i].id
 														+ "/"
-														+ response.data[i].name
+														+ encodeURIComponent(response.data[i].name)
 														+ "\"><h4>"
 														+ response.data[i].name
 														+ "</h4></a></div><div class=\"row\" id=\""
@@ -119,4 +119,5 @@ function inviteFriend() {
 
 window.onload = function() {
 	changeList("friends");
+	changeUserName();
 }

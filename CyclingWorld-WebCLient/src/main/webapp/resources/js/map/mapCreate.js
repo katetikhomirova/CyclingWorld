@@ -260,6 +260,7 @@ var removeVMarkers = function(index) {
 
 window.onload = function() {
 	changeList("addNewRoute");
+	changeUserName();
 	initMap('mapcontainer');
 	initPolyline();
 };
@@ -296,7 +297,6 @@ function savePolyline() {
 	var xhr = new XMLHttpRequest();
 	var str = 'http://cyclingworld-service.cfapps.io/rest/getRouteNames/'
 			+ get_cookie("id");
-	xhr.open("GET", str, true);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
@@ -311,21 +311,28 @@ function savePolyline() {
 						+ get_cookie("id")
 						+ ","
 						+ encodeURIComponent(document.getElementById('name').value)
-						+ ","
-						+ distance + "," + isPublic;
+						+ "," + distance + "," + isPublic;
 				for (var i = 0; i < polyLine.getPath().getLength(); i++) {
 					url = url + "," + polyLine.getPath().getAt(i).toUrlValue();
 				}
 				xmlHttp = new XMLHttpRequest();
 
+				xmlHttp.onreadystatechange = function() {
+					if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+						if (JSON.parse(xmlHttp.responseText) == true) {
+							alert("Success!");
+							window.location = "/profile";
+
+						} else
+							alert("Route wasn't saved, please try again.");
+					}
+				}
 				xmlHttp.open("GET", url, true);
 				xmlHttp.send(null);
-				window.location = "/profile";
 			}
 		}
-
 	}
-
+	xhr.open("GET", str, true);
 	xhr.setRequestHeader("Accept", "application/json");
 	xhr.send(null);
 }

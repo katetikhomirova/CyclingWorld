@@ -7,13 +7,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="../../favicon.ico">
-
 <title>Cycling World</title>
 
 <!-- Bootstrap core CSS -->
 <link
 	href="http://cyclingworld.cfapps.io/resources/css/bootstrap/bootstrap.min.css"
 	rel="stylesheet">
-<link
-	href="http://cyclingworld.cfapps.io/resources/css/mainTheme.css"
+<link href="http://cyclingworld.cfapps.io/resources/css/mainTheme.css"
 	rel="stylesheet">

@@ -14,9 +14,9 @@ window.fbAsyncInit = function() {
 			}, function(response) {
 				document.cookie = "id=" + response.id;
 				var arr = response.name.split("  ");
-				document.cookie = "name=" + arr[0];
+				document.cookie = "name=" + encodeURIComponent(arr[0]);
 				if (arr[1] != null)
-					document.cookie = "surname=" + arr[1];
+					document.cookie = "surname=" + encodeURIComponent(arr[1]);
 				else
 					document.cookie = "surname=";
 				if (window.location.pathname == '/')
@@ -38,9 +38,9 @@ function login() {
 			}, function(response) {
 				document.cookie = "id=" + response.id;
 				var arr = response.name.split("  ");
-				document.cookie = "name=" + arr[0];
+				document.cookie = "name=" + encodeURIComponent(arr[0]);
 				if (arr[1] != null)
-					document.cookie = "surname=" + arr[1];
+					document.cookie = "surname=" + encodeURIComponent(arr[1]);
 				else
 					document.cookie = "surname=";
 				window.location = "/profile";

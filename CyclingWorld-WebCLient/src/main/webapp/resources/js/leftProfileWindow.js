@@ -3,7 +3,7 @@ function get_cookie(cookie_name) {
 			+ '=([^;]*)(;|$)');
 
 	if (results)
-		return (unescape(results[2]));
+		return (decodeURIComponent(results[2]).split('+').join(' '));
 	else
 		return null;
 };
@@ -30,4 +30,9 @@ changeList = function(page) {
 		$('#friendsLink').removeClass('active');
 		$('#profileLink').removeClass('active');
 	}
+}
+
+changeUserName = function() {
+	document.getElementById("userName").innerHTML = "<h4>" + get_cookie("name")
+			+ " " + get_cookie("surname") + "</h4>";
 }

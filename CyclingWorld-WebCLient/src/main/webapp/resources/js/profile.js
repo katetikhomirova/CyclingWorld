@@ -1,5 +1,6 @@
 window.onload = function() {
 	changeList("profile");
+	changeUserName();
 	xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function() {
 		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
@@ -7,9 +8,11 @@ window.onload = function() {
 			var routes = JSON.parse(xmlHttp.responseText);
 			if (routes.length > 0) {
 				for ( var i in routes) {
-					htmlStr += "<hr><div class=\"row myRow\"><div class=\"col-md-6 col-sm-8 col-xs-12\"><h4>";
+					htmlStr += "<hr><div class=\"row myRow\"><div class=\"col-md-6 col-sm-8 col-xs-12\"><h5>";
 					htmlStr += routes[i].name;
-					htmlStr += "</h4></div>";
+					if (routes[i].isPublic == true)
+						htmlStr += " (public)";
+					htmlStr += "</h5></div>";
 					htmlStr += "<div class=\"col-md-2 col-sm-4 col-xs-12\"><h5>";
 					htmlStr += routes[i].distance;
 					htmlStr += "km</h5></div>";
@@ -45,8 +48,11 @@ function removeRoute(name) {
 
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
-				alert("Succesfully removed!");
-				window.location = "/profile";
+				if (JSON.parse(xhr.responseText) == true) {
+					alert("Succesfully removed!");
+					window.location = "/profile";
+				} else
+					alert("Route wasn't removed, please try again.");
 			}
 		}
 		xhr.send(null);

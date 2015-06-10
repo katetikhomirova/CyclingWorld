@@ -79,21 +79,32 @@ public class MongoDBManager implements DBManager {
 		return res;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean saveRoute(Route route) {
+		WriteResult result = null;
 		DBCollection routes = db.getCollection("Routes");
 		BasicDBObject newRoute = routeToDBObject(route);
 		BasicDBObject[] routesToInsert = new BasicDBObject[1];
 		routesToInsert[0] = newRoute;
-		routes.insert(routesToInsert);
-		return false;
+		result = routes.insert(routesToInsert);
+		CommandResult cmd = result.getLastError();
+		if (cmd != null && !cmd.ok()) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public boolean removeRoute(Route route) {
 		DBCollection routes = db.getCollection("Routes");
-		routes.remove(routeToDBObject(route));
-		return false;
+		WriteResult result = null;
+		result = routes.remove(routeToDBObject(route));
+		CommandResult cmd = result.getLastError();
+		if (cmd != null && !cmd.ok()) {
+			return false;
+		}
+		return true;
 	}
 
 	private Route dbObjectToRoute(DBObject doc) {

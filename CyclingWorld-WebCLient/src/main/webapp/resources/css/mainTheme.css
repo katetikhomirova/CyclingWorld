@@ -46,3 +46,9 @@ html, body {
 		padding-right: 20px;
 	}
 }
+
+#profSideBar.affix {
+    position: fixed;
+    top:70px;
+    width:228px;
+  }
