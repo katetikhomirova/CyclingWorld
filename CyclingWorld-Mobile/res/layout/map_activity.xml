@@ -9,13 +9,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/goToMap"
-        style="@style/button_text"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/blue_button"
-        android:onClick="finish"
-        android:text="Finish" />
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/start"
+            style="@style/button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_button"
+            android:onClick="start"
+            android:text="Start" />
+
+        <Button
+            android:id="@+id/finish"
+            style="@style/button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_button"
+            android:enabled="false"
+            android:onClick="finish"
+            android:text="Finish" />
+    </LinearLayout>
 
 </RelativeLayout>

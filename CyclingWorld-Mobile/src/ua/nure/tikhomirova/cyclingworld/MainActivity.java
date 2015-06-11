@@ -53,8 +53,7 @@ public class MainActivity extends FragmentActivity {
 
 				if (user != null) {
 
-					username.setText("You are currently logged in as "
-							+ user.getName());
+					username.setText("Welcome " + user.getName() + "!");
 
 					RouteListFragment fragment = (RouteListFragment) fragmentManager
 							.findFragmentByTag(TAG_1);
