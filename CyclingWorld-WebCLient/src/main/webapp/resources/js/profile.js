@@ -17,7 +17,7 @@ window.onload = function() {
 					htmlStr += routes[i].distance;
 					htmlStr += "km</h5></div>";
 					htmlStr += "<div class=\"col-md-2 col-sm-6 col-xs-6\"><button class=\"btn btn-large btn-primary\" onclick=\"initMap('";
-					htmlStr += get_cookie("id") + "','" + routes[i].name
+					htmlStr += get_cookie("id") + "','" + routes[i].coordsString
 							+ "');\">Show</button>";
 					htmlStr += "</div><div class=\"col-md-2 col-sm-6 col-xs-6\"><button class=\"btn btn-large btn-danger removeBtn\" onclick=\"removeRoute('";
 					htmlStr += routes[i].name + "');\">";

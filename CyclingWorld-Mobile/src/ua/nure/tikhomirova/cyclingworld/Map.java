@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 public class Map extends Activity {
 	@Override
@@ -31,6 +32,7 @@ public class Map extends Activity {
 	private GoogleMap googleMap;
 	private Marker mMarker;
 	private List<Marker> route;
+	private String id;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,8 @@ public class Map extends Activity {
 		Intent intent = getIntent();
 
 		String coords = intent.getStringExtra("coordsString");
-		Log.i("Your Logcat tag: ", "cords in map " + coords);
+		id = intent.getStringExtra("id");
+		Log.i("Your Logcat tag: ", "id in map " + id);
 		try {
 			if (googleMap == null) {
 				googleMap = ((MapFragment) getFragmentManager()
@@ -89,5 +92,11 @@ public class Map extends Activity {
 			options.add(new LatLng(p.getLat(), p.getLng()));
 		}
 		googleMap.addPolyline(options);
+	}
+
+	public void finish(View v) {
+		Log.i("Your Logcat tag: ", "go to main");
+		Intent intent = new Intent(Map.this, MainActivity.class);
+		Map.this.startActivity(intent);
 	}
 }

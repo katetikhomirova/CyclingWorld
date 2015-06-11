@@ -18,17 +18,26 @@ changeList = function(page) {
 		$('#profileLink').addClass('active');
 		$('#friendsLink').removeClass('active');
 		$('#addNewRouteLink').removeClass('active');
+		$('#trainingsLink').removeClass('active');
 	}
 	if (page == "friends") {
 		$('#friendsLink').addClass('active');
 		$('#profileLink').removeClass('active');
 		$('#addNewRouteLink').removeClass('active');
+		$('#trainingsLink').removeClass('active');
 	}
 
 	if (page == "addNewRoute") {
 		$('#addNewRouteLink').addClass('active');
 		$('#friendsLink').removeClass('active');
 		$('#profileLink').removeClass('active');
+		$('#trainingsLink').removeClass('active');
+	}
+	if (page == "trainings") {
+		$('#trainingsLink').addClass('active');
+		$('#friendsLink').removeClass('active');
+		$('#profileLink').removeClass('active');
+		$('#addNewRouteLink').removeClass('active');
 	}
 }
 

@@ -22,8 +22,8 @@
 				<li id="friendsLink"><a href="/friends"> <i
 						class="glyphicon glyphicon-user"></i> Friends
 				</a></li>
-				<li><a href="#"> <i class="glyphicon glyphicon-search"></i>
-						Search route
+				<li id="trainingsLink"><a href="/trainings"> <i
+						class="glyphicon glyphicon-heart"></i> Trainings
 				</a></li>
 			</ul>
 		</div>

@@ -1,19 +1,12 @@
 package ua.nure.tikhomirova.cyclingworld;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -25,6 +18,10 @@ import com.facebook.widget.LoginButton;
 import com.facebook.widget.LoginButton.UserInfoChangedCallback;
 
 public class MainActivity extends FragmentActivity {
+
+	@Override
+	public void onBackPressed() {
+	}
 
 	private LoginButton loginBtn;
 	private TextView username;
@@ -42,15 +39,6 @@ public class MainActivity extends FragmentActivity {
 		fragmentManager = getSupportFragmentManager();
 		fragment = new RouteListFragment();
 
-		/*
-		if (savedInstanceState == null) { // при первом запуске программы
-			FragmentTransaction fragmentTransaction = fragmentManager
-					.beginTransaction(); // добавляем в контейнер при помощи
-											// метода add()
-			fragmentTransaction.add(R.id.container, fragment, TAG_1);
-			fragmentTransaction.commit();
-		}*/
-
 		super.onCreate(savedInstanceState);
 		uiHelper = new UiLifecycleHelper(this, statusCallback);
 		uiHelper.onCreate(savedInstanceState);
@@ -67,15 +55,14 @@ public class MainActivity extends FragmentActivity {
 
 					username.setText("You are currently logged in as "
 							+ user.getName());
-					
+
 					RouteListFragment fragment = (RouteListFragment) fragmentManager
 							.findFragmentByTag(TAG_1);
 
 					if (fragment == null) {
 						fragment = new RouteListFragment();
 						Bundle bundle = new Bundle();
-						bundle.putString("id",
-								user.getId());
+						bundle.putString("id", user.getId());
 						fragment.setArguments(bundle);
 
 						FragmentTransaction fragmentTransaction = fragmentManager
@@ -85,7 +72,7 @@ public class MainActivity extends FragmentActivity {
 						fragmentTransaction.commit();
 
 					} else {
-						//fragment.setMsg("Первый фрагмент уже загружен");
+						// fragment.setMsg("Первый фрагмент уже загружен");
 					}
 
 				} else {

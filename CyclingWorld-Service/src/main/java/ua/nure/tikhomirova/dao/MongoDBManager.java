@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ua.nure.tikhomirova.entity.Route;
+import ua.nure.tikhomirova.entity.Training;
 
 import com.mongodb.*;
 
@@ -30,6 +31,8 @@ public class MongoDBManager implements DBManager {
 		}
 		return instance;
 	}
+
+	// route methods
 
 	@Override
 	public Route getRoute(String userId, String routeName) {
@@ -95,6 +98,7 @@ public class MongoDBManager implements DBManager {
 		return true;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean removeRoute(Route route) {
 		DBCollection routes = db.getCollection("Routes");
@@ -124,6 +128,57 @@ public class MongoDBManager implements DBManager {
 		res.put("dist", route.getDistance());
 		res.put("isPub", route.getIsPublic());
 		res.put("coords", route.getCoordsString());
+		return res;
+	}
+
+	// training methods
+
+	@Override
+	public List<Training> getTrainings(String userId) {
+		List<Training> res = new ArrayList<Training>();
+		DBCollection trainings = db.getCollection("Trainings");
+		BasicDBObject findQuery = new BasicDBObject("userId", userId);
+
+		DBCursor docs = trainings.find(findQuery);
+
+		while (docs.hasNext()) {
+			DBObject doc = docs.next();
+			res.add(dbObjectToTraining(doc));
+		}
+		return res;
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public boolean saveTraining(Training training) {
+		WriteResult result = null;
+		DBCollection routes = db.getCollection("Trainings");
+		BasicDBObject newTraining = trainingToDBObject(training);
+		BasicDBObject[] trainingsToInsert = new BasicDBObject[1];
+		trainingsToInsert[0] = newTraining;
+		result = routes.insert(trainingsToInsert);
+		CommandResult cmd = result.getLastError();
+		if (cmd != null && !cmd.ok()) {
+			return false;
+		}
+		return true;
+	}
+
+	private Training dbObjectToTraining(DBObject doc) {
+		Training t = new Training();
+		t.setUserId((String) doc.get("userId"));
+		t.setDistance((String) doc.get("dist"));
+		t.setTime((String) doc.get("time"));
+		t.setCoordsFromString((String) doc.get("coords"));
+		return t;
+	}
+
+	private BasicDBObject trainingToDBObject(Training training) {
+		BasicDBObject res = new BasicDBObject();
+		res.put("userId", training.getUserId());
+		res.put("time", training.getTime());
+		res.put("dist", training.getDistance());
+		res.put("coords", training.getCoordsString());
 		return res;
 	}
 

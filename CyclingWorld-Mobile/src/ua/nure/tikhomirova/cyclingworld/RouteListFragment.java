@@ -42,8 +42,10 @@ public class RouteListFragment extends Fragment {
 	final String tag = "Your Logcat tag: ";
 	// JSON Node names
 	private static final String TAG_ROUTE_NAME = "name";
+	private static final String TAG_ID = "id";
 	private static final String TAG_DISTANCE = "distance";
 	private static final String TAG_COORDS = "coordsString";
+	
 	ArrayList<HashMap<String, String>> routeList;
 	ArrayList<HashMap<String, String>> coords;
 	SimpleAdapter adapter;
@@ -144,9 +146,7 @@ public class RouteListFragment extends Fragment {
 												Intent intent = new Intent(
 														getActivity(),
 														Map.class);
-												Log.i(tag,
-														"intent coords "
-																+ intent.getStringExtra(TAG_COORDS));
+												intent.putExtra(TAG_ID, id);
 												for (HashMap<String, String> e : coords) {
 													if (e.get(TAG_ROUTE_NAME) == routeName
 															.getText())
