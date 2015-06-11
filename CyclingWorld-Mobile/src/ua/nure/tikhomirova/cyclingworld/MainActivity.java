@@ -11,6 +11,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.TextView;
@@ -28,23 +30,26 @@ public class MainActivity extends FragmentActivity {
 	private TextView username;
 	private UiLifecycleHelper uiHelper;
 
+	public RouteListFragment fragment;
+
+	private FragmentManager fragmentManager;
+
+	public final static String TAG_1 = "FRAGMENT_1";
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
-		try {
-			PackageInfo info = getPackageManager().getPackageInfo(
-					"com.facebook.samples.loginhowto",
-					PackageManager.GET_SIGNATURES);
-			for (Signature signature : info.signatures) {
-				MessageDigest md = MessageDigest.getInstance("SHA");
-				md.update(signature.toByteArray());
-				Log.d("KeyHash:",
-						Base64.encodeToString(md.digest(), Base64.DEFAULT));
-			}
-		} catch (NameNotFoundException e) {
-		} catch (NoSuchAlgorithmException e) {
+		fragmentManager = getSupportFragmentManager();
+		fragment = new RouteListFragment();
 
-		}
+		/*
+		if (savedInstanceState == null) { // при первом запуске программы
+			FragmentTransaction fragmentTransaction = fragmentManager
+					.beginTransaction(); // добавляем в контейнер при помощи
+											// метода add()
+			fragmentTransaction.add(R.id.container, fragment, TAG_1);
+			fragmentTransaction.commit();
+		}*/
 
 		super.onCreate(savedInstanceState);
 		uiHelper = new UiLifecycleHelper(this, statusCallback);
@@ -62,6 +67,26 @@ public class MainActivity extends FragmentActivity {
 
 					username.setText("You are currently logged in as "
 							+ user.getName());
+					
+					RouteListFragment fragment = (RouteListFragment) fragmentManager
+							.findFragmentByTag(TAG_1);
+
+					if (fragment == null) {
+						fragment = new RouteListFragment();
+						Bundle bundle = new Bundle();
+						bundle.putString("id",
+								user.getId());
+						fragment.setArguments(bundle);
+
+						FragmentTransaction fragmentTransaction = fragmentManager
+								.beginTransaction();
+						fragmentTransaction.replace(R.id.container, fragment,
+								TAG_1);
+						fragmentTransaction.commit();
+
+					} else {
+						//fragment.setMsg("Первый фрагмент уже загружен");
+					}
 
 				} else {
 
