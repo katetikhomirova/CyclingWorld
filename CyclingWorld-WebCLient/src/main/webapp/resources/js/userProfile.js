@@ -16,7 +16,7 @@ window.onload = function() {
 					htmlStr += "km</h5></div>";
 					htmlStr += "<div class=\"col-md-2 col-sm-3 col-xs-12\"><button class=\"btn btn-large btn-primary\" onclick=\"initMap('";
 					htmlStr += get_cookie("requestedId") + "','"
-							+ routes[i].name + "');\">Show</button>";
+							+ routes[i].coordsString + "');\">Show</button>";
 					htmlStr += "</div></div>";
 
 				}

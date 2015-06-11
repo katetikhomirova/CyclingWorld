@@ -3,8 +3,6 @@ package ua.nure.tikhomirova.cyclingworld;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -45,7 +43,7 @@ public class RouteListFragment extends Fragment {
 	private static final String TAG_ID = "id";
 	private static final String TAG_DISTANCE = "distance";
 	private static final String TAG_COORDS = "coordsString";
-	
+
 	ArrayList<HashMap<String, String>> routeList;
 	ArrayList<HashMap<String, String>> coords;
 	SimpleAdapter adapter;
@@ -75,7 +73,7 @@ public class RouteListFragment extends Fragment {
 			String msg = bundle.getString("id");
 			if (msg != null) {
 				id = msg;
-				Thread thread = new Thread(new Runnable() {
+				Thread getPolyLinesThread = new Thread(new Runnable() {
 					@Override
 					public void run() {
 						try {
@@ -174,7 +172,7 @@ public class RouteListFragment extends Fragment {
 					}
 				});
 
-				thread.start();
+				getPolyLinesThread.start();
 			}
 		}
 		return fragmentView;
